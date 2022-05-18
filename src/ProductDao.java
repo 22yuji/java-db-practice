@@ -3,37 +3,29 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ProductDao {
 
 	private Connection connection;
 	
-	private static final String SQL_SELECT_ALL = "SELECT product_id, product_name, price FROM products ORDER BY product_id";
+	private static final String SQL_SELECT = "SELECT product_id, product_name, price FROM products WHERE product_id";
 	
 	public ProductDao(Connection connection) {
 		this.connection = connection;
 	}
 	
-	public List<Product> findAll() {
-	    List<Product> list = new ArrayList<Product>();
+	public Product findById(int userId) {
+        try (PreparedStatement stmt = connection.prepareStatement(SQL_SELECT)) {
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
 
-	    try (PreparedStatement stmt = connection.prepareStatement(SQL_SELECT_ALL)) {
-	        ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return new Product(rs.getInt("product_id"), rs.getString("product_name"), rs.getInt("price"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
-	        while (rs.next()) {
-	            Product p = new Product(rs.getInt("product_id"), rs.getString("product_name"), rs.getInt("price"));
-	            list.add(p);
-	        }
-	    } catch (SQLException e) {
-	        throw new RuntimeException(e);
-	    }
-
-	    return list;
-	}
-	
-	public void register(Product product) {
-		
-	}
+        return null;
+    }
 }

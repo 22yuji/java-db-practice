@@ -6,10 +6,10 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>Result</title>
 	</head>
 	
 	<body>
-	
+		<h1>検索結果</h1>
 	</body>
 </html>

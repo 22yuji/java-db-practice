@@ -11,7 +11,7 @@ public class DbExam5 {
 		
 		productDao = new ProductDao(DbUtil.getConnection());
 		
-		List<Product> list = productDao.findAll();
+		List<Product> list = productDao.find();
         
     	for(Product p : list) {
     		System.out.println("product_id:" + p.getProductId() + ", product_name:" + p.getProductName() + ", price:" + p.getPrice());
