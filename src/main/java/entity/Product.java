@@ -1,4 +1,6 @@
 //Entity
+package entity;
+
 public class Product {
 	private Integer productId;
 	private String productName;

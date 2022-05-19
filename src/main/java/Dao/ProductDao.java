@@ -1,8 +1,10 @@
-//Dao
+package Dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import entity.Product;
 
 public class ProductDao {
 
@@ -14,9 +16,9 @@ public class ProductDao {
 		this.connection = connection;
 	}
 	
-	public Product findById(int userId) {
+	public Product findById(int productId) {
         try (PreparedStatement stmt = connection.prepareStatement(SQL_SELECT)) {
-            stmt.setInt(1, userId);
+            stmt.setInt(1, productId);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {

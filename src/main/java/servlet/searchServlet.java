@@ -8,7 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Util.ParamUtil;
+import service.Search;
+import util.ParamUtil;
 /**
  * Servlet implementation class searchServlet
  */
@@ -33,7 +34,8 @@ public class searchServlet extends HttpServlet {
             return;
         }
 		
-		
+		Search search = new Search();
+		//Product product = search.
 	}
 
 }
