@@ -11,5 +11,13 @@
 	
 	<body>
 		<h1>検索結果</h1>
+		<p>データを取得しました</p>
+		
+		<div>
+		    <label>product_id:</label>${fn:escapeXml(product.productId)}<br>
+		    <label>product_name:</label>${fn:escapeXml(product.productName)}<br>
+			<label>price:</label>${fn:escapeXml(product.price)}
+		</div>
+  		
 	</body>
 </html>

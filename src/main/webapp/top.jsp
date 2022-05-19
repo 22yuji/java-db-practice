@@ -10,9 +10,13 @@
 	</head>
 	
 	<body>
+	
 		<h1>検索条件を入力してください</h1>
+		<c:if test="${not empty msg}">
+    	<p>${msg}</p>
+  		</c:if>
 		<form action="searchServlet" method="post">
-		    <label>ユーザ名：</label>
+		    <label>product_id：</label>
 		    <input type="number" name="pID">
 		    <br>
 		    <button type="submit">検索</button>

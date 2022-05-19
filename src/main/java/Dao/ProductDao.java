@@ -8,9 +8,9 @@ import entity.Product;
 
 public class ProductDao {
 
-	private Connection connection;
+	Connection connection;
 	
-	private static final String SQL_SELECT = "SELECT product_id, product_name, price FROM products WHERE product_id";
+	private static final String SQL_SELECT = "SELECT * FROM products WHERE product_id = ?";
 	
 	public ProductDao(Connection connection) {
 		this.connection = connection;

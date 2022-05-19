@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import entity.Product;
 import service.Search;
 import util.ParamUtil;
 /**
@@ -23,9 +24,9 @@ public class searchServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
-		String ID = request.getParameter("id");
+		Integer ID = ParamUtil.checkAndParseInt(request.getParameter("pID"));
 		
-		if (ParamUtil.isNullOrEmpty(ID)) {
+		if (ID == null) {
             // メッセージ設定
             request.setAttribute("msg", "product_idを入力してください  ");
 
@@ -35,7 +36,17 @@ public class searchServlet extends HttpServlet {
         }
 		
 		Search search = new Search();
-		//Product product = search.
+		Product product = search.findById(ID);
+		
+		if (product == null) {
+            // データがない場合
+            request.setAttribute("msg", "対象のデータはありません");
+            request.getRequestDispatcher("/top.jsp").forward(request, response);
+        } else {
+            // データがある場合
+            request.setAttribute("product", product);
+            request.getRequestDispatcher("/searchResult.jsp").forward(request, response);
+        }
 	}
 
 }
