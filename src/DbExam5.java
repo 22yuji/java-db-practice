@@ -10,10 +10,10 @@ public class DbExam5 {
 	public static void main(String[] args) {
 		
 		productDao = new ProductDao(DbUtil.getConnection());
-		
-		Product newProduct = new Product(null, "ボールペン", 200);
-        productDao.register(newProduct);
-        
+		for(int i = 0; i < 50; i++) {
+			Product newProduct = new Product(null, "ボールペン", 200);
+	        productDao.register(newProduct);
+		}
 		List<Product> list = productDao.findAll();
 		
     	for(Product p : list) {
